@@ -6,7 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.FileNotFoundException;
-
+/**
+ * This method will parse a string of .txt file and meke Arraylist that store name of person
+ * @author gimdaegyo
+ *
+ */
 
 public class MacParser {
 	/*HashMap<String,Integer> map = new HashMap<String,Integer>();
@@ -55,3 +59,4 @@ public class MacParser {
     }
 }
 
+ 
