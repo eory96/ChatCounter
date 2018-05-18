@@ -13,11 +13,22 @@ import java.io.FileNotFoundException;
  */
 
 public class MacParser {
-	/*HashMap<String,Integer> map = new HashMap<String,Integer>();
+	FileLoader loadingFile = new FileLoader();
+	HashMap<String,Integer> map = new HashMap<String,Integer>();
 	ArrayList<String> list = new ArrayList<String>();
 	String delimiter = "\\s|\\d|\\n|\\r|\\[|\\]";
 	
-	public void token(String fileName) {
+	Scanner inputLine = null;
+
+    public void parse() {
+        loadingFile.readDirectory("/Users/gimdaegyo/eclipse-workspace/drive-download-20180517T024414Z");
+        while (loading) {
+			String line = inputLine.nextLine();
+			System.out.println(line);
+        }
+    }
+	
+	/*public void token(String fileName) {
 		int cnt=0;
 		Scanner inputStream=null;
 		try {
@@ -41,22 +52,7 @@ public class MacParser {
 	}*/
 	
 
-    Scanner scanner = null;
-
-    public MacParser(String input) {
-        scanner = new Scanner(input).useDelimiter("[\\[,\\]]");
-        
-    }
-
-    public void parse() {
-        int i = 0;
-        while (scanner.hasNextLine()) {
-            String word = scanner.nextLine();
-            System.out.print(i++);
-            System.out.print(": ");
-            System.out.println(word);
-        }
-    }
+    
 }
 
  

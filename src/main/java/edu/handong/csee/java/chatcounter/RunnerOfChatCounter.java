@@ -13,20 +13,17 @@ public class RunnerOfChatCounter {
 	 * @throws FileNotFoundException
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
-		String inputName="/Users/gimdaegyo/eclipse-workspace/drive-download-20180517T024414Z";
-		//Scanner keyboard = new Scanner(System.in);
+		System.out.println("Please input pathe name");
+		Scanner keyboard = new Scanner(System.in);
+		String inputName=keyboard.nextLine();
 		
-		//System.out.print("Input name of file : ");
-		//inputName = keyboard.nextLine();
 		FileLoader loader = new FileLoader();
 		loader.readDirectory(inputName);
 		
-		
-		//MacParser mac = new MacParser(inputName);
+		//MacParser mac = new MacParser();
 		//mac.parse();
 		
-		//WindowsParser window = new WindowsParser();
-		//window.windows(inputName);
 	}
 
 }
+//My path name : "/Users/gimdaegyo/eclipse-workspace/drive-download-20180517T024414Z"
