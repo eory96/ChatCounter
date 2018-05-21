@@ -1,58 +1,24 @@
 package edu.handong.csee.java.chatcounter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.io.File;
-import java.io.FileNotFoundException;
-/**
- * This method will parse a string of .txt file and meke Arraylist that store name of person
- * @author gimdaegyo
- *
- */
 
-public class MacParser {
-	FileLoader loadingFile = new FileLoader();
-	HashMap<String,Integer> map = new HashMap<String,Integer>();
-	ArrayList<String> list = new ArrayList<String>();
-	String delimiter = "\\s|\\d|\\n|\\r|\\[|\\]";
-	
-	Scanner inputLine = null;
-
-    public void parse() {
-        loadingFile.readDirectory("/Users/gimdaegyo/eclipse-workspace/drive-download-20180517T024414Z");
-        while (loading) {
-			String line = inputLine.nextLine();
-			System.out.println(line);
-        }
-    }
-	
-	/*public void token(String fileName) {
-		int cnt=0;
-		Scanner inputStream=null;
-		try {
-			inputStream = new Scanner(new File(fileName));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		inputStream.useDelimiter(delimiter);
+public class MacParser implements MessageParser{
+	ArrayList<String> name = new ArrayList();
+	public String parsingAndSotre(String line) {
 		
-		//System.out.println("name");
+		Pattern nameP = Pattern.compile("(\\[)((?:\\D|\\d)+)(\\])(\\s\\[.*(?:\\d{1}|\\d{2}):\\d{2}.*\\](\\s)(.*))");
+		Matcher nameM = nameP.matcher(line);
+		String realName="";
 		
-		while (inputStream.hasNext()) {
-			String line = inputStream.nextLine();
-			if (line == null || line.length() == 0)
-                continue;
-            System.out.print(cnt++);
-            System.out.print(": ");
-            System.out.println(line);
+		if(nameM.find()) {
+			String patternName = nameM.group();
+			int first = nameM.start(2);
+			int last = nameM.end(2);
+			realName = patternName.substring(first, last);
+			
+			
 		}
-	}*/
-	
-
-    
+		return realName;
+	}
 }
-
- 

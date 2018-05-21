@@ -16,13 +16,19 @@ public class RunnerOfChatCounter {
 		System.out.println("Please input pathe name");
 		Scanner keyboard = new Scanner(System.in);
 		String inputName=keyboard.nextLine();
+		NameAdder na = new NameAdder();
+		
+		//MessageParser parser = new MessageParser();
 		
 		FileLoader loader = new FileLoader();
 		loader.readDirectory(inputName);
+		loader.kakao_id.toString();
 		
+		//na.add();
 		//MacParser mac = new MacParser();
-		//mac.parse();
-		
+		//mac.parsingAndSotre(inputName);
+		//WindowsParser window = new WindowsParser();
+		//window.parsingAndSotre(inputName);
 	}
 
 }

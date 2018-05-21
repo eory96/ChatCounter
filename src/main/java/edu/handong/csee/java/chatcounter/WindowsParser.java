@@ -1,34 +1,32 @@
 package edu.handong.csee.java.chatcounter;
+import java.util.ArrayList;
 /**
  * This method will parse a string of .csv file and meke Arraylist that store name of person
  * @author gimdaegyo
  *
  */
-import java.io.File; 
-import java.io.FileNotFoundException; 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Scanner; 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class WindowsParser {
-	/**
-	 * using delimiter seperate chating content and just save user name(also, store repeated name ) in array list 
-	 * @param name
-	 */
-	public void parserWindow(String name) {
-		try { 
-	        File csv = new File(name); 
-	        Scanner key = new Scanner(csv); 
-	        key.useDelimiter("[,]"); 
-	        while (key.hasNextLine()) { 
-	           System.out.printf("%s \t", key.); 
-	           System.out.println(); 
-	        } 
-	        key.close(); 
-	        } catch (FileNotFoundException e) { 
-	        e.printStackTrace(); 
-	     } 
+public class WindowsParser implements MessageParser{
+	ArrayList<String> name = new ArrayList();
+	
+	public String parsingAndSotre(String line) {
+		
+		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][1-9]\\s[0-2][0-9]:[0-5][0-9]:[0-5][0-9]\\,\")(\\S*)(\"\\,)(\")(.*)(\")");
+		Matcher nameM = nameP.matcher(line);
+		String realName="" ;
+		
+		if(nameM.find()) {
+			String patternName = nameM.group();
+			int first = nameM.start(2);
+			int last = nameM.end(2);
+			realName = patternName.substring(first, last);
+			if(realName==null) return null;
+		}
+		return realName;
 	}
 	
 }
+
 
