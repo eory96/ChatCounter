@@ -26,17 +26,17 @@ public class MacParser implements MessageParser{
 			int firstM = nameM.start(8);
 			int lastM = nameM.end(8);
 			realMessage = mss.substring(firstM, lastM);
-			realMessage.replace("\\n", " ");
+			realMessage.replace("\n", " ");
 			
 			String day = nameM.group();
 			int firstD = nameM.start(5);
 			int lastD = nameM.end(5);
 			realDate=day.substring(firstD, lastD);
-			if(realDate.contains("오전 ")|realDate.contains("오후 ")) {
+			/*if(realDate.contains("오전 ")|realDate.contains("오후 ")) {
 				realDate.replace("오전 ", "");
 				realDate.replace("오후 ", "");
-			}
-			String fullMessage = realName+" "+realMessage;
+			}*/
+			String fullMessage = "\""+realName+"\""+", "+"\""+realDate+"\""+", "+"\""+realMessage+"\"";
 			if(!messageM.contains(fullMessage))	
 				messageM.add(fullMessage);
 		}

@@ -14,32 +14,38 @@ public class WindowsParser implements MessageParser{
 	//ArrayList<String> date = new ArrayList();
 	public void parsingAndSotre(String line) {
 		
-		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][1-9]\\s[0-2][0-9]:[0-5][0-9]:[0-5][0-9]\\,\")(\\S*)(\"\\,)(\")(.*)(\")");
+		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][1-9]\\s)([0-2][0-9]:[0-5][0-9])(:[0-5][0-9])(\\,\")(\\D*|\\d*)(\"\\,)(\")(.*)(\")");
 		Matcher nameM = nameP.matcher(line);
 		String realName="" ;
 		String realMss="";
+		String realTime="";
 		String fullString="";
+		
 		String noMss="joined this chatroom.";
 		if(nameM.find()) {
 			String patternName = nameM.group();
-			int first = nameM.start(2);
-			int last = nameM.end(2);
+			int first = nameM.start(5);
+			int last = nameM.end(5);
 			realName = patternName.substring(first, last);
 			
-			int firstM = nameM.start(5);
-			int lastM = nameM.end(5);
+			int firstM = nameM.start(8);
+			int lastM = nameM.end(8);
 			realMss = patternName.substring(firstM, lastM);
 			
-			fullString=realName+" "+realMss;
-			if(!messageW.contains(fullString)&&!realMss.contains(noMss))	
+			int firstD = nameM.start(2);
+			int lastD = nameM.end(2);
+			realTime = patternName.substring(firstD,lastD);
+			fullString="\""+realName+"\""+", "+"\""+realTime+"\""+", "+"\""+realMss+"\"";
+			if(!messageW.contains(fullString))	
 				messageW.add(fullString);
+			
 		}
 		
 		
 	}
 	
 	public String selectData(String line) {
-		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][1-9]\\s[0-2][0-9]:[0-5][0-9]:[0-5][0-9]\\,\")(\\S*)(\"\\,)(\")(.*)(\")");
+		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][1-9]\\s)([0-2][0-9]:[0-5][0-9])(:[0-5][0-9])(\\,\")(\\D*|\\d*)(\"\\,)(\")(.*)(\")");
 		Matcher nameM = nameP.matcher(line);
 		String realName="";
 		

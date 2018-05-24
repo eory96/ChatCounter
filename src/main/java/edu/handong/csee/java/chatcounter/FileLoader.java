@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class FileLoader {
 	private ArrayList<String> message;
-	public ArrayList<String> kakao_id = new ArrayList<String>();
+	//public ArrayList<String> kakao_id = new ArrayList<String>();
 	
 	/**
 	 *  This method receive path name from main method that is RunnerOfChatCounter.
