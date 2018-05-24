@@ -4,20 +4,26 @@ import java.util.ArrayList;
 
 public class NameAdder {
 	
-	public void add(ArrayList<String> names) {
-		ArrayList <String> name = new ArrayList<String>();
+	public void add() {
+		MacParser mac = new MacParser();
+		WindowsParser windows = new WindowsParser();
 		
-		//String arr[] = new String[names.size()];
-		//names.toArray(arr);
-		names.sort(null);
+		ArrayList<String> totalMss =new ArrayList();
 		
-		/*for(int i=0;i<arr.length;i++) {
-			if(!name.contains(arr[i]))
-				name.add(arr[i]);
-		}*/
-		
-		for(String n:names) {
-			System.out.println(n);
+		for(String n:mac.messageM) {
+			totalMss.add(n);
 		}
+		for(String w:windows.messageW) {
+			if(!totalMss.contains(w))
+			totalMss.add(w);
+		}
+		
+		for(String t:totalMss) {
+			System.out.println(t);
+		}
+		
+		//for(String out:totalMss) {
+		//	System.out.println(out);
+		//}
 	}
 }

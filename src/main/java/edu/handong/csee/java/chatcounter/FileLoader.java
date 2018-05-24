@@ -37,19 +37,18 @@ public class FileLoader {
 				if(name.contains(".txt")){
 					while(input.hasNextLine()) {
 						String line = input.nextLine();
-						if(!mParser.parsingAndSotre(line).equals("")) kakao_id.add(mParser.parsingAndSotre(line)); 
+						if(!mParser.selectData(line).equals("")) mParser.parsingAndSotre(line); 
 					}
 				}
 				else if(name.contains(".csv")) {
 					while(input.hasNextLine()) {
 						String line = input.nextLine();
-						if(!wParser.parsingAndSotre(line).equals("")) kakao_id.add(wParser.parsingAndSotre(line)); 
+						if(!wParser.selectData(line).equals("")) wParser.parsingAndSotre(line); 
 					}
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-			fl.add(kakao_id);
 		}
 	}
 
