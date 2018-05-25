@@ -17,7 +17,7 @@ public class RunnerOfChatCounter {
 		Scanner keyboard = new Scanner(System.in);
 		String inputName=keyboard.nextLine();
 		NameAdder na = new NameAdder();
-		PeopleMessageCounter pm = new PeopleMessageCounter();
+		FileWriter fw=new FileWriter();
 		//MessageParser parser = new MessageParser();
 		
 		FileLoader loader = new FileLoader();
@@ -31,6 +31,7 @@ public class RunnerOfChatCounter {
 		//window.parsingAndSotre(inputName);
 		na.storeMessageToOne();
 		//pm.count();
+		//fw.ildan();
 	}
 
 }
