@@ -6,16 +6,26 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * This class will calculate how many times say in kakaoTalk
+ * totalMss1 save all of message and 2 remove same lines talking at same time
+ * kakao_id array have id just one time and this make name array 
+ * all_kakao_id arraylist have all id of totalMss2
+ * last counter hashmap has key that save name, and value that save how many times talking on kakaoTalk0  
+ * @author gimdaegyo
+ *
+ */
 public class NameAdder {
-	static ArrayList<String> totalMss1 =new ArrayList<String>();
-	static ArrayList<String> totalMss2 =new ArrayList<String>();
-	static ArrayList<String> kakao_id = new ArrayList<String>();
-	static ArrayList<String> all_kakao_id = new ArrayList<String>();
-	static String[] name = new String[kakao_id.size()];
-	static HashMap<String, Integer> counter = new HashMap<String, Integer>();
-	//String n,w;
+	ArrayList<String> totalMss1 =new ArrayList<String>();
+	ArrayList<String> totalMss2 =new ArrayList<String>();
+	ArrayList<String> kakao_id = new ArrayList<String>();
+	ArrayList<String> all_kakao_id = new ArrayList<String>();
+	String[] name = new String[kakao_id.size()];
+	HashMap<String, Integer> counter = new HashMap<String, Integer>();
 	
+	/**
+	 * this method for countname and store name and counting array (sort result)
+	 */
 	public void countName() {
 		storeMessageToOne();
 		int count=0;
@@ -51,7 +61,9 @@ public class NameAdder {
 		for(String n:mac.messageM) {
 				totalMss1.add(n);
 		}
-		
+		for(String a:mac.messageM) {
+			System.out.println(a);
+		}
 		for(String w:windows.messageW) {
 			if(!totalMss1.contains(w))
 				totalMss1.add(w);

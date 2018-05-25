@@ -18,19 +18,11 @@ public class RunnerOfChatCounter {
 		String inputName=keyboard.nextLine();
 		NameAdder na = new NameAdder();
 		FileWriter fw=new FileWriter();
-		//MessageParser parser = new MessageParser();
+		
 		
 		FileLoader loader = new FileLoader();
 		loader.readDirectory(inputName);
-		//loader.kakao_id.toString();
 		
-		//na.add();
-		//MacParser mac = new MacParser();
-		//mac.parsingAndSotre(inputName);
-		//WindowsParser window = new WindowsParser();
-		//window.parsingAndSotre(inputName);
-		//na.storeMessageToOne();
-		//pm.count();
 		fw.sortResult();
 	}
 

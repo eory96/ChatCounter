@@ -1,7 +1,7 @@
 package edu.handong.csee.java.chatcounter;
 import java.util.ArrayList;
 /**
- * This method will parse a string of .csv file and meke Arraylist that store name of person
+ * This method will parse a string of .csv file and meke Arraylist that store message
  * @author gimdaegyo
  *
  */
@@ -11,7 +11,10 @@ import java.util.regex.Pattern;
 public class WindowsParser implements MessageParser{
 	//ArrayList<String> name = new ArrayList();
 	static ArrayList<String> messageW = new ArrayList<String>();
-	//ArrayList<String> date = new ArrayList();
+	/**
+	 * This method parse csv file and store parsing data to messageW array list
+	 * so it can make integrate all message
+	 */
 	public void parsingAndSotre(String line) {
 		
 		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][1-9]\\s)([0-2][0-9]:[0-5][0-9])(:[0-5][0-9])(\\,\")(.*)(\"\\,)(\")(.*)(\")");
@@ -42,7 +45,9 @@ public class WindowsParser implements MessageParser{
 		
 		
 	}
-	
+	/**
+	 * this method used by FileLoader class to check line useful
+	 */
 	public String selectData(String line) {
 		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][1-9]\\s)([0-2][0-9]:[0-5][0-9])(:[0-5][0-9])(\\,\")(.*)(\"\\,)(\")(.*)(\")");
 		Matcher nameM = nameP.matcher(line);

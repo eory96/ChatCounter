@@ -2,11 +2,19 @@ package edu.handong.csee.java.chatcounter;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * This method will parse a string of .txt file and meke Arraylist that store message
+ * @author gimdaegyo
+ *
+ */
 public class MacParser implements MessageParser{
-	//ArrayList<String> name = new ArrayList();
+
 	static ArrayList<String> messageM = new ArrayList<String>();
-	//ArrayList<String> date = new ArrayList();
+	/**
+	 * This method parse txt file and store parsing data to messageW array list
+	 * so it can make integrate all message
+	 */
+
 	public void parsingAndSotre(String line) {
 		String realName="";
 		String realMessage="";
@@ -44,36 +52,10 @@ public class MacParser implements MessageParser{
 		String fullMessage = "\""+realName+"\""+", "+"\""+cutTime(realDate)+"\""+", "+"\""+realMessage+"\"";
 		if(!messageM.contains(fullMessage))	
 			messageM.add(fullMessage);
-		
-		/*for(String i:messageM) {
-			System.out.println(i);
-		}*/
-		
 	}
-	private String cutTime(String r) {
-		Pattern forTimeK = Pattern.compile("(\\D+)(\\s)(.*)");
-		Pattern forTimeE = Pattern.compile("(.*)(\\s)(\\D+)");
-		Matcher dateM1 = forTimeK.matcher(r);
-		Matcher dateM2 = forTimeE.matcher(r);
-		
-		
-		if(dateM1.find()) {
-			String time = dateM1.group();
-			int firstT = dateM1.start(3);
-			int lastT = dateM1.end(3);
-			String realTime1 = time.substring(firstT, lastT);
-			return realTime1;
-		}
-	
-		else if(dateM2.find()) {
-			String time = dateM2.group();
-			int firstT = dateM2.start(1);
-			int lastT = dateM2.end(1);
-			String realTime2 = time.substring(firstT,lastT);
-			return realTime2;
-		}
-		return null;
-	}
+	/**
+	 * this method used by FileLoader class to check line useful
+	 */
 	public String selectData(String line) {
 		Pattern nameP = Pattern.compile("(\\[)((?:\\D|\\d)+)(\\])(\\s\\[(.*(?:\\d{1}|\\d{2}):\\d{2}).*\\])((\\s)(.*))");
 		Matcher nameM = nameP.matcher(line);
@@ -89,5 +71,36 @@ public class MacParser implements MessageParser{
 		return realName;
 		
 	}
+	private String cutTime(String r) {
+		Pattern forTimeK = Pattern.compile("(\\D+)(\\s)(\\d+)(:)(\\d+)");
+		Pattern forTimeE = Pattern.compile("(\\d+)(:)(\\d+)(\\s)(\\D+)");
+		Matcher dateM1 = forTimeK.matcher(r);
+		Matcher dateM2 = forTimeE.matcher(r);
+		int currentHour = 0;
+		String realTime2=null;
+		if(dateM1.find()) {
+			String time = dateM1.group();
+			String ap = dateM1.group(1);
+			if(ap.equals("오전"))
+				currentHour = Integer.parseInt(dateM1.group(3));
+			else
+				currentHour = Integer.parseInt(dateM1.group(3))+12;
+			String realTime1 = currentHour+":"+dateM1.group(5);
+			return realTime1;
+		}
+	
+		else if(dateM2.find()) {
+			String time = dateM2.group();
+			String ap = dateM2.group(5);
+			if(ap.equals("AM"))
+				currentHour = Integer.parseInt(dateM2.group(1));
+			else
+				currentHour = Integer.parseInt(dateM2.group(1))+12;
+			realTime2 = currentHour+":"+dateM2.group(3);
+			return realTime2;
+		}
+		return realTime2;
+	}
+	
 	
 }
