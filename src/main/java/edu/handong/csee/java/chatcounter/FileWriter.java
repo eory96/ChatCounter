@@ -2,10 +2,8 @@ package edu.handong.csee.java.chatcounter;
 
 public class FileWriter {
 	
-	public void ildan() {
+	public void sortResult() {
 		NameAdder na = new NameAdder();
-		na.storeMessageToOne();
-	
+		na.countName();
 	}
-	
 }

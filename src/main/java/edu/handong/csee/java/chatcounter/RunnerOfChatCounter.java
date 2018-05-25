@@ -29,9 +29,9 @@ public class RunnerOfChatCounter {
 		//mac.parsingAndSotre(inputName);
 		//WindowsParser window = new WindowsParser();
 		//window.parsingAndSotre(inputName);
-		na.storeMessageToOne();
+		//na.storeMessageToOne();
 		//pm.count();
-		//fw.ildan();
+		fw.sortResult();
 	}
 
 }
