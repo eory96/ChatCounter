@@ -28,7 +28,8 @@ public class FileLoader {
 		NameAdder fl =new NameAdder();
 		MacParser mParser = new MacParser();
 		WindowsParser wParser = new WindowsParser();
-
+		String temp="";
+				
 		for(File fileNameA:fileNames) {
 			String name = fileNameA.toString();
 
@@ -43,7 +44,7 @@ public class FileLoader {
 				else if(name.contains(".csv")) {
 					while(input.hasNextLine()) {
 						String line = input.nextLine();
-						if(!wParser.selectData(line).equals("")) wParser.parsingAndSotre(line); 
+						wParser.parsingAndSotre(line); 
 					}
 				}
 			} catch (FileNotFoundException e) {

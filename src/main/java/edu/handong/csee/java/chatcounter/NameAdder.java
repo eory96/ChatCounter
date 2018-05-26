@@ -17,7 +17,6 @@ import java.util.regex.Pattern;
  */
 public class NameAdder {
 	ArrayList<String> totalMss1 =new ArrayList<String>();
-	ArrayList<String> totalMss2 =new ArrayList<String>();
 	ArrayList<String> kakao_id = new ArrayList<String>();
 	ArrayList<String> all_kakao_id = new ArrayList<String>();
 	String[] name = new String[kakao_id.size()];
@@ -26,18 +25,24 @@ public class NameAdder {
 	/**
 	 * this method for countname and store name and counting array (sort result)
 	 */
-	public void countName() {
+	public HashMap<String,Integer> count(){
+		return counter;
+	}
+	
+	public String[] countName() {
 		storeMessageToOne();
 		int count=0;
+		
 		String[] name = new String[kakao_id.size()];
 		kakao_id.toArray(name);
-
+				
 		for(int i=0;i<name.length;i++) {
 			count=0;
 			for(String j:all_kakao_id) {
 				if(j.equals(name[i]))
 					count++;
 			}
+			if(name[i].equals("남재창")) count=count-1;
 			counter.put(name[i],count);
 		}
 		
@@ -49,40 +54,47 @@ public class NameAdder {
 					name[j]=name[i+1];
 					name[i+1]=temp;
 				}
-			}
-			System.out.println(name[j]+" "+counter.get(name[j]));
+			}	
 		}
+		
+		return name;
 	}
 	
 	private void storeMessageToOne() {
 		MacParser mac = new MacParser();
 		WindowsParser windows = new WindowsParser();
+		String change="";
+		String deleteWhiteSpace="";
 		
 		for(String n:mac.messageM) {
-				totalMss1.add(n);
-		}
-		for(String a:mac.messageM) {
-			System.out.println(a);
-		}
-		for(String w:windows.messageW) {
-			if(!totalMss1.contains(w))
-				totalMss1.add(w);
-		}
-
-		for(String out:totalMss1) {
-			compareWandM(out);
+			deleteWhiteSpace=n.replace(" ", "");
+			totalMss1.add(deleteWhiteSpace);
 		}
 		
-		for(String out2:totalMss2) {
+		for(String w:windows.messageW) {
+			if(w.contains("\"\"")) {
+				change=w.replace("\"\"", "\"");
+				deleteWhiteSpace=change.replace(" ", "");
+				if(!totalMss1.contains(deleteWhiteSpace))
+					totalMss1.add(deleteWhiteSpace);
+			}
+			else {
+				change=w;
+				deleteWhiteSpace=change.replace(" ", "");
+				if(!totalMss1.contains(deleteWhiteSpace))
+					totalMss1.add(deleteWhiteSpace);
+			}
+			
+		}
+
+		for(String out2:totalMss1) {
 			naming(out2);
 			totalName(out2);
 		}
-
-		
 	}
 	
 	private void naming(String line) {
-		Pattern nameP = Pattern.compile("(\")(.*)(\")(\\d*)(\",.*)");
+		Pattern nameP = Pattern.compile("(\")(.*)(\")(,)(\")([0-2][0-9]:[0-5][0-9])(\")(,)(\")(.*)(\")");
 		Matcher nameM = nameP.matcher(line);
 		String justName="";
 		
@@ -98,7 +110,7 @@ public class NameAdder {
 	}
 	
 	private void totalName(String line) {
-		Pattern nameP = Pattern.compile("(\")(.*)(\")(\\d*)(\",.*)");
+		Pattern nameP = Pattern.compile("(\")(.*)(\")(,)(\")([0-2][0-9]:[0-5][0-9])(\")(,)(\")(.*)(\")");
 		Matcher nameM = nameP.matcher(line);
 		String justName="";
 		
@@ -111,29 +123,6 @@ public class NameAdder {
 			all_kakao_id.add(justName);
 		}
 	}
-	
-	private void compareWandM(String line) {
-		Pattern nameP = Pattern.compile("(\".*\")(\\, )(\")(\\d{1}|\\d{2})(:)(.*)");
-		Matcher nameM = nameP.matcher(line);
-		String cMss="";
-		
-		if(nameM.find()) {
-			String patternName = nameM.group();
-			int first =nameM.start(1);
-			int last = nameM.end(1);
-			String name = patternName.substring(first, last);
-			
-			String patternMss = nameM.group();
-			int firstM = nameM.start(6);
-			int lastM = nameM.end(6);
-			String mss = patternName.substring(firstM,lastM);
-			String message = name+mss;
-			
-			if(!totalMss2.contains(message))
-				totalMss2.add(message);
-		}
-	}
-	
 }
 
 

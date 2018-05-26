@@ -16,43 +16,43 @@ public class WindowsParser implements MessageParser{
 	 * so it can make integrate all message
 	 */
 	public void parsingAndSotre(String line) {
-		
-		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][1-9]\\s)([0-2][0-9]:[0-5][0-9])(:[0-5][0-9])(\\,\")(.*)(\"\\,)(\")(.*)(\")");
+
+		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][0-9]\\s)([0-2][0-9]:[0-5][0-9])(:[0-5][0-9])(\\,\")(.*)(\"\\,)(\")(.*)");
 		Matcher nameM = nameP.matcher(line);
 		String realName="" ;
 		String realMss="";
 		String realTime="";
 		String fullString="";
-		
+
 		//String noMss="joined this chatroom.";
 		if(nameM.find()) {
 			String patternName = nameM.group();
 			int first = nameM.start(5);
 			int last = nameM.end(5);
 			realName = patternName.substring(first, last);
-			
+
 			int firstM = nameM.start(8);
 			int lastM = nameM.end(8);
 			realMss = patternName.substring(firstM, lastM);
-			
+
 			int firstD = nameM.start(2);
 			int lastD = nameM.end(2);
 			realTime = patternName.substring(firstD,lastD);
 			fullString="\""+realName+"\""+", "+"\""+realTime+"\""+", "+"\""+realMss+"\"";
-			
+			if(!messageW.contains(fullString))
 			messageW.add(fullString);
 		}
-		
-		
+
+
 	}
 	/**
 	 * this method used by FileLoader class to check line useful
 	 */
 	public String selectData(String line) {
-		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][1-9]\\s)([0-2][0-9]:[0-5][0-9])(:[0-5][0-9])(\\,\")(.*)(\"\\,)(\")(.*)(\")");
+		Pattern nameP = Pattern.compile("(20[0-1][0-9]-[0-1][0-9]-[0-3][0-9]\\s)([0-2][0-9]:[0-5][0-9])(:[0-5][0-9])(\\,\")(.*)(\"\\,)(\")(.*)");
 		Matcher nameM = nameP.matcher(line);
 		String realName="";
-		
+
 		if(nameM.find()) {
 			String patternName = nameM.group();
 			int first = nameM.start(2);
@@ -60,6 +60,7 @@ public class WindowsParser implements MessageParser{
 			realName = patternName.substring(first, last);
 			return realName;
 		}
+		
 		return realName;
 	}
 }

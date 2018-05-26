@@ -71,36 +71,116 @@ public class MacParser implements MessageParser{
 		return realName;
 		
 	}
+	
 	private String cutTime(String r) {
 		Pattern forTimeK = Pattern.compile("(\\D+)(\\s)(\\d+)(:)(\\d+)");
 		Pattern forTimeE = Pattern.compile("(\\d+)(:)(\\d+)(\\s)(\\D+)");
 		Matcher dateM1 = forTimeK.matcher(r);
 		Matcher dateM2 = forTimeE.matcher(r);
-		int currentHour = 0;
+		int currentHourK = 0;
+		int currentHourE = 0;
 		String realTime2=null;
+		String realTime1=null;
+		String realTime3=null;
+		String realTime4=null;
+		
 		if(dateM1.find()) {
-			String time = dateM1.group();
 			String ap = dateM1.group(1);
-			if(ap.equals("오전"))
-				currentHour = Integer.parseInt(dateM1.group(3));
-			else
-				currentHour = Integer.parseInt(dateM1.group(3))+12;
-			String realTime1 = currentHour+":"+dateM1.group(5);
-			return realTime1;
+			if(ap.equals("오전")) {
+				currentHourK = Integer.parseInt(dateM1.group(3));
+				if(Integer.parseInt(dateM1.group(3))<10) {
+					realTime1 = "0"+currentHourK+":"+dateM1.group(5);
+					return realTime1;
+				}
+				else return currentHourK+":"+dateM1.group(5);
+				
+			}
+			else if(ap.equals("오후")) {
+				currentHourK = Integer.parseInt(dateM1.group(3))+12;
+				if(currentHourK == 24) return "12"+":"+dateM1.group(5);
+				else {
+					realTime2 = currentHourK+":"+dateM1.group(5);
+					return realTime2;
+				}
+			}
 		}
-	
-		else if(dateM2.find()) {
-			String time = dateM2.group();
+
+		else if(dateM2.find()) {	
 			String ap = dateM2.group(5);
-			if(ap.equals("AM"))
-				currentHour = Integer.parseInt(dateM2.group(1));
-			else
-				currentHour = Integer.parseInt(dateM2.group(1))+12;
-			realTime2 = currentHour+":"+dateM2.group(3);
-			return realTime2;
+			if(ap.equals("AM")) {
+				currentHourE = Integer.parseInt(dateM2.group(1));
+				if(Integer.parseInt(dateM2.group(1))<10) {
+					realTime3 = "0"+currentHourE+":"+dateM2.group(3);
+					return realTime3;
+				}
+				else if(Integer.parseInt(dateM2.group(1))>=10&&Integer.parseInt(dateM2.group(1))<12) 
+					return currentHourE+":"+dateM2.group(3);
+				else if(Integer.parseInt(dateM2.group(1))==12)
+					return "00"+":"+dateM2.group(3);
+			}
+			else if(ap.equals("PM")){
+				currentHourE = 12+Integer.parseInt(dateM2.group(1));
+				if(currentHourE == 24) return "12"+":"+dateM2.group(3);
+				else {
+					realTime4 = currentHourE+":"+dateM2.group(3);
+					return realTime4;
+				}
+			}
+				
 		}
-		return realTime2;
+		return null;
 	}
+	
+	/*public String koreaAM_PM(String time){
+		Pattern forTimeK = Pattern.compile("(\\D+)(\\s)(\\d+)(:)(\\d+)");
+		Matcher dateM1 = forTimeK.matcher(time);
+
+		if(dateM1.find()) {
+			int hour = Integer.parseInt(dateM1.group(3));
+
+			if(dateM1.group(1).equals("오전")) {
+				if(hour<10)
+					return "0"+hour+":"+dateM1.group(5);
+				else
+					return hour+":"+dateM1.group(5);
+			}
+			else if(dateM1.group(1).equals("오후")) {
+				hour=hour+12;
+				if(hour==24) {
+					hour=12;
+					return hour+":"+dateM1.group(5);
+				}
+				else if(hour != 24) {
+					return hour+":"+dateM1.group(5);
+				}
+			}
+		}
+
+		Pattern forTimeE = Pattern.compile("(\\d+)(:)(\\d+)(\\s)(\\D+)");
+		Matcher dateM2 = forTimeE.matcher(time);
+		if(dateM2.find()) {
+			int hour2 = Integer.parseInt(dateM2.group(1));
+
+			if(dateM2.group(5).equals("AM")) {
+				if(hour2<10)
+					return "0"+hour2+":"+dateM2.group(3);
+				else
+					return hour2+":"+dateM2.group(3);
+			}
+			else if(dateM2.group(1).equals("PM")) {
+				hour2=hour2+12;
+				if(hour2==24) {
+					hour2=12;
+					return hour2+":"+dateM2.group(3);
+				}
+				else if(hour2 !=24) {
+					return hour2+":"+dateM2.group(3);
+				}
+			}
+		}
+		return null;
+	}*/
+	
 	
 	
 }
