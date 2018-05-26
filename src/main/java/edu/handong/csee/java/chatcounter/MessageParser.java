@@ -5,6 +5,15 @@ package edu.handong.csee.java.chatcounter;
  *
  */
 public interface MessageParser {
+	/**
+	 * this method will use for parsing the line
+	 * @param line
+	 */
 	public void parsingAndSotre(String line);
+	/**
+	 * this method will use for selecting data
+	 * @param line
+	 * @return
+	 */
 	public String selectData(String line);
 }

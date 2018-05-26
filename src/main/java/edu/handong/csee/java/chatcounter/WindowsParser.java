@@ -7,9 +7,17 @@ import java.util.ArrayList;
  */
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * this class will parse csv file using static arraylist 
+ * arraylist store name, time, message in particular form
+ * and be used by NameAdder class for make hashmap
+ * @author gimdaegyo
+ *
+ */
 public class WindowsParser implements MessageParser{
-	//ArrayList<String> name = new ArrayList();
+	/**
+	 * messageW arraylist save data from csv file
+	 */
 	static ArrayList<String> messageW = new ArrayList<String>();
 	/**
 	 * This method parse csv file and store parsing data to messageW array list

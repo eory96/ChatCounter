@@ -8,7 +8,9 @@ import java.util.regex.Pattern;
  *
  */
 public class MacParser implements MessageParser{
-
+	/**
+	 * messageM arraylist will store txt parsing data
+	 */
 	static ArrayList<String> messageM = new ArrayList<String>();
 	/**
 	 * This method parse txt file and store parsing data to messageW array list
@@ -130,57 +132,4 @@ public class MacParser implements MessageParser{
 		}
 		return null;
 	}
-	
-	/*public String koreaAM_PM(String time){
-		Pattern forTimeK = Pattern.compile("(\\D+)(\\s)(\\d+)(:)(\\d+)");
-		Matcher dateM1 = forTimeK.matcher(time);
-
-		if(dateM1.find()) {
-			int hour = Integer.parseInt(dateM1.group(3));
-
-			if(dateM1.group(1).equals("오전")) {
-				if(hour<10)
-					return "0"+hour+":"+dateM1.group(5);
-				else
-					return hour+":"+dateM1.group(5);
-			}
-			else if(dateM1.group(1).equals("오후")) {
-				hour=hour+12;
-				if(hour==24) {
-					hour=12;
-					return hour+":"+dateM1.group(5);
-				}
-				else if(hour != 24) {
-					return hour+":"+dateM1.group(5);
-				}
-			}
-		}
-
-		Pattern forTimeE = Pattern.compile("(\\d+)(:)(\\d+)(\\s)(\\D+)");
-		Matcher dateM2 = forTimeE.matcher(time);
-		if(dateM2.find()) {
-			int hour2 = Integer.parseInt(dateM2.group(1));
-
-			if(dateM2.group(5).equals("AM")) {
-				if(hour2<10)
-					return "0"+hour2+":"+dateM2.group(3);
-				else
-					return hour2+":"+dateM2.group(3);
-			}
-			else if(dateM2.group(1).equals("PM")) {
-				hour2=hour2+12;
-				if(hour2==24) {
-					hour2=12;
-					return hour2+":"+dateM2.group(3);
-				}
-				else if(hour2 !=24) {
-					return hour2+":"+dateM2.group(3);
-				}
-			}
-		}
-		return null;
-	}*/
-	
-	
-	
 }

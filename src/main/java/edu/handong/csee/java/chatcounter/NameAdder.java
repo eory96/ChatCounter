@@ -16,19 +16,37 @@ import java.util.regex.Pattern;
  *
  */
 public class NameAdder {
+	/**
+	 * totalMss1 arraylist1 save all message except overlaping data
+	 */
 	ArrayList<String> totalMss1 =new ArrayList<String>();
+	/**
+	 * kakao_id arraylist save kakao_id (id store just once)
+	 */
 	ArrayList<String> kakao_id = new ArrayList<String>();
+	/**
+	 * all_kakao_id arraylist save all emerged id from tatalMss1
+	 */
 	ArrayList<String> all_kakao_id = new ArrayList<String>();
+	/**
+	 * name array use for counting how use kakao
+	 */
 	String[] name = new String[kakao_id.size()];
+	/**
+	 * counter hashmap save id(key),counting number(value)->sorted result
+	 */
 	HashMap<String, Integer> counter = new HashMap<String, Integer>();
 	
 	/**
-	 * this method for countname and store name and counting array (sort result)
+	 * this will method return counter hashmap to FileWriter class
+	 * @return
 	 */
 	public HashMap<String,Integer> count(){
 		return counter;
 	}
-	
+	/**
+	 * this method for countname and store name and counting array (sort result)
+	 */
 	public String[] countName() {
 		storeMessageToOne();
 		int count=0;

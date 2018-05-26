@@ -12,8 +12,6 @@ import java.util.Scanner;
  *
  */
 public class FileLoader {
-	private ArrayList<String> message;
-	//public ArrayList<String> kakao_id = new ArrayList<String>();
 	
 	/**
 	 *  This method receive path name from main method that is RunnerOfChatCounter.
@@ -25,10 +23,8 @@ public class FileLoader {
 		getFileNames(path);
 		Scanner input=null;
 		ArrayList<File> fileNames = getFileNames(path);
-		NameAdder fl =new NameAdder();
 		MacParser mParser = new MacParser();
 		WindowsParser wParser = new WindowsParser();
-		String temp="";
 				
 		for(File fileNameA:fileNames) {
 			String name = fileNameA.toString();
@@ -56,7 +52,6 @@ public class FileLoader {
 	private ArrayList<File> getFileNames(String path){
 		ArrayList<File> fileNames = new ArrayList<File>();
 		File myPath = new File(path);
-		//myPath.listFiles();
 		for(File fileName:myPath.listFiles()) {
 			fileNames.add(fileName);
 		}

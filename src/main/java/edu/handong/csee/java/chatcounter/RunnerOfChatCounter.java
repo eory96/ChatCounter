@@ -1,11 +1,11 @@
 package edu.handong.csee.java.chatcounter;
+
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 /**
  * This is class have main method for running program
  * it will just send file name and receive result of class method
  */
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class RunnerOfChatCounter {
 	/**
 	 * this main method receive file name from user and send file name to each class method
@@ -27,4 +27,5 @@ public class RunnerOfChatCounter {
 	}
 
 }
-//My path name : "/Users/gimdaegyo/eclipse-workspace/drive-download-20180517T024414Z"
+//My path name : /Users/gimdaegyo/eclipse-workspace/drive-download-20180517T024414Z
+//new file path : /Users/gimdaegyo/eclipse-workspace/hello.txt
