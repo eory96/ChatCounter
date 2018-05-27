@@ -34,7 +34,8 @@ public class FileLoader {
 				if(name.contains(".txt")){
 					while(input.hasNextLine()) {
 						String line = input.nextLine();
-						if(!mParser.selectData(line).equals("")) mParser.parsingAndSotre(line); 
+						if(mParser.selectData(line)==true) 
+							mParser.parsingAndSotre(line); 
 					}
 				}
 				else if(name.contains(".csv")) {

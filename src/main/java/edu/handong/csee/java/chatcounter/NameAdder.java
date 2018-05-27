@@ -53,14 +53,16 @@ public class NameAdder {
 		
 		String[] name = new String[kakao_id.size()];
 		kakao_id.toArray(name);
-				
+		for(String a:totalMss1) {
+			System.out.println(a);
+		}
 		for(int i=0;i<name.length;i++) {
 			count=0;
 			for(String j:all_kakao_id) {
 				if(j.equals(name[i]))
 					count++;
 			}
-			if(name[i].equals("남재창")) count=count-1;
+			//if(name[i].equals("남재창")) count=count-1;
 			counter.put(name[i],count);
 		}
 		
@@ -85,22 +87,19 @@ public class NameAdder {
 		String deleteWhiteSpace="";
 		
 		for(String n:mac.messageM) {
-			deleteWhiteSpace=n.replace(" ", "");
-			totalMss1.add(deleteWhiteSpace);
+			if(!totalMss1.contains(n.replace("사진", "Photo")))
+			totalMss1.add(n.replace("사진", "Photo"));
 		}
 		
 		for(String w:windows.messageW) {
 			if(w.contains("\"\"")) {
 				change=w.replace("\"\"", "\"");
-				deleteWhiteSpace=change.replace(" ", "");
-				if(!totalMss1.contains(deleteWhiteSpace))
-					totalMss1.add(deleteWhiteSpace);
+				if(!totalMss1.contains(change.replace("사진", "Photo")))
+					totalMss1.add(change.replace("사진", "Photo"));
 			}
 			else {
-				change=w;
-				deleteWhiteSpace=change.replace(" ", "");
-				if(!totalMss1.contains(deleteWhiteSpace))
-					totalMss1.add(deleteWhiteSpace);
+				if(!totalMss1.contains(w.replace("사진", "Photo")));
+					totalMss1.add(w.replace("사진", "Photo"));
 			}
 			
 		}
@@ -112,7 +111,7 @@ public class NameAdder {
 	}
 	
 	private void naming(String line) {
-		Pattern nameP = Pattern.compile("(\")(.*)(\")(,)(\")([0-2][0-9]:[0-5][0-9])(\")(,)(\")(.*)(\")");
+		Pattern nameP = Pattern.compile("(\")(.*)(\")(,\\s)(\")([0-2][0-9]:[0-5][0-9])(\",\\s)(\")(.*)(\")");
 		Matcher nameM = nameP.matcher(line);
 		String justName="";
 		
@@ -128,7 +127,7 @@ public class NameAdder {
 	}
 	
 	private void totalName(String line) {
-		Pattern nameP = Pattern.compile("(\")(.*)(\")(,)(\")([0-2][0-9]:[0-5][0-9])(\")(,)(\")(.*)(\")");
+		Pattern nameP = Pattern.compile("(\")(.*)(\")(,\\s)(\")([0-2][0-9]:[0-5][0-9])(\",\\s)(\")(.*)(\")");
 		Matcher nameM = nameP.matcher(line);
 		String justName="";
 		

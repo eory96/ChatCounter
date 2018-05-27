@@ -58,19 +58,14 @@ public class MacParser implements MessageParser{
 	/**
 	 * this method used by FileLoader class to check line useful
 	 */
-	public String selectData(String line) {
-		Pattern nameP = Pattern.compile("(\\[)((?:\\D|\\d)+)(\\])(\\s\\[(.*(?:\\d{1}|\\d{2}):\\d{2}).*\\])((\\s)(.*))");
+	public boolean selectData(String line) {
+		Pattern nameP = Pattern.compile("(\\[)((?:\\D|\\d)+)(\\])(\\s\\[(.*)\\])((\\s)(.*))");
 		Matcher nameM = nameP.matcher(line);
-		String realName="";
 		
 		if(nameM.find()) {
-			String patternName = nameM.group();
-			int first = nameM.start(2);
-			int last = nameM.end(2);
-			realName = patternName.substring(first, last);
-			return realName;
+			return true;
 		}
-		return realName;
+		return false;
 		
 	}
 	
@@ -81,10 +76,10 @@ public class MacParser implements MessageParser{
 		Matcher dateM2 = forTimeE.matcher(r);
 		int currentHourK = 0;
 		int currentHourE = 0;
-		String realTime2=null;
+		//String realTime2=null;
 		String realTime1=null;
-		String realTime3=null;
-		String realTime4=null;
+		//String realTime3=null;
+		//String realTime4=null;
 		
 		if(dateM1.find()) {
 			String ap = dateM1.group(1);
@@ -94,15 +89,27 @@ public class MacParser implements MessageParser{
 					realTime1 = "0"+currentHourK+":"+dateM1.group(5);
 					return realTime1;
 				}
-				else return currentHourK+":"+dateM1.group(5);
+				else if(Integer.parseInt(dateM1.group(3))>=10&&Integer.parseInt(dateM1.group(3))<12) {
+					realTime1 = currentHourK+":"+dateM1.group(5);
+					return realTime1;
+				}
+					
+				else if(Integer.parseInt(dateM1.group(3))==12) {
+					realTime1 = "00"+":"+dateM1.group(5);
+					return realTime1;
+				}
+					
 				
 			}
 			else if(ap.equals("오후")) {
-				currentHourK = Integer.parseInt(dateM1.group(3))+12;
-				if(currentHourK == 24) return "12"+":"+dateM1.group(5);
+				currentHourK = 12+Integer.parseInt(dateM1.group(3));
+				if(currentHourK == 24) {
+					realTime1 = "12"+":"+dateM1.group(5);
+					return realTime1;
+				}
 				else {
-					realTime2 = currentHourK+":"+dateM1.group(5);
-					return realTime2;
+					realTime1 = currentHourK+":"+dateM1.group(5);
+					return realTime1;
 				}
 			}
 		}
@@ -112,20 +119,29 @@ public class MacParser implements MessageParser{
 			if(ap.equals("AM")) {
 				currentHourE = Integer.parseInt(dateM2.group(1));
 				if(Integer.parseInt(dateM2.group(1))<10) {
-					realTime3 = "0"+currentHourE+":"+dateM2.group(3);
-					return realTime3;
+					realTime1 = "0"+currentHourE+":"+dateM2.group(3);
+					return realTime1;
 				}
-				else if(Integer.parseInt(dateM2.group(1))>=10&&Integer.parseInt(dateM2.group(1))<12) 
-					return currentHourE+":"+dateM2.group(3);
-				else if(Integer.parseInt(dateM2.group(1))==12)
-					return "00"+":"+dateM2.group(3);
+				else if(Integer.parseInt(dateM2.group(1))>=10&&Integer.parseInt(dateM2.group(1))<12) {
+					realTime1 = currentHourE+":"+dateM2.group(3);
+					return realTime1;
+				}
+					
+				else if(Integer.parseInt(dateM2.group(1))==12) {
+					realTime1 = "00"+":"+dateM2.group(3);
+					return realTime1;
+				}
+					//return "00"+":"+dateM2.group(3);
 			}
 			else if(ap.equals("PM")){
 				currentHourE = 12+Integer.parseInt(dateM2.group(1));
-				if(currentHourE == 24) return "12"+":"+dateM2.group(3);
+				if(currentHourE == 24) {
+					realTime1 = "12"+":"+dateM2.group(3);
+					return realTime1;
+				}
 				else {
-					realTime4 = currentHourE+":"+dateM2.group(3);
-					return realTime4;
+					realTime1 = currentHourE+":"+dateM2.group(3);
+					return realTime1;
 				}
 			}
 				

@@ -15,5 +15,5 @@ public interface MessageParser {
 	 * @param line
 	 * @return
 	 */
-	public String selectData(String line);
+	//public boolean selectData(String line);
 }
