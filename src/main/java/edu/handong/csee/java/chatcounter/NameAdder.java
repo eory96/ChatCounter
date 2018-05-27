@@ -53,9 +53,7 @@ public class NameAdder {
 		
 		String[] name = new String[kakao_id.size()];
 		kakao_id.toArray(name);
-		for(String a:totalMss1) {
-			System.out.println(a);
-		}
+		
 		for(int i=0;i<name.length;i++) {
 			count=0;
 			for(String j:all_kakao_id) {
@@ -87,19 +85,19 @@ public class NameAdder {
 		String deleteWhiteSpace="";
 		
 		for(String n:mac.messageM) {
-			if(!totalMss1.contains(n.replace("사진", "Photo")))
-			totalMss1.add(n.replace("사진", "Photo"));
+			if(!totalMss1.contains(n))
+			totalMss1.add(n);
 		}
 		
 		for(String w:windows.messageW) {
 			if(w.contains("\"\"")) {
 				change=w.replace("\"\"", "\"");
-				if(!totalMss1.contains(change.replace("사진", "Photo")))
-					totalMss1.add(change.replace("사진", "Photo"));
+				if(!totalMss1.contains(change))
+					totalMss1.add(change);
 			}
 			else {
-				if(!totalMss1.contains(w.replace("사진", "Photo")));
-					totalMss1.add(w.replace("사진", "Photo"));
+				if(!totalMss1.contains(w));
+					totalMss1.add(w);
 			}
 			
 		}

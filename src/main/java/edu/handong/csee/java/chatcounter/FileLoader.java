@@ -23,8 +23,10 @@ public class FileLoader {
 		getFileNames(path);
 		Scanner input=null;
 		ArrayList<File> fileNames = getFileNames(path);
+		NameAdder fl =new NameAdder();
 		MacParser mParser = new MacParser();
 		WindowsParser wParser = new WindowsParser();
+		String temp="";
 				
 		for(File fileNameA:fileNames) {
 			String name = fileNameA.toString();
@@ -34,8 +36,7 @@ public class FileLoader {
 				if(name.contains(".txt")){
 					while(input.hasNextLine()) {
 						String line = input.nextLine();
-						if(mParser.selectData(line)==true) 
-							mParser.parsingAndSotre(line); 
+						if(!mParser.selectData(line).equals("")) mParser.parsingAndSotre(line); 
 					}
 				}
 				else if(name.contains(".csv")) {
@@ -45,7 +46,7 @@ public class FileLoader {
 					}
 				}
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				System.out.println("you type wrong path name");
 			}
 		}
 	}
@@ -53,6 +54,7 @@ public class FileLoader {
 	private ArrayList<File> getFileNames(String path){
 		ArrayList<File> fileNames = new ArrayList<File>();
 		File myPath = new File(path);
+		//myPath.listFiles();
 		for(File fileName:myPath.listFiles()) {
 			fileNames.add(fileName);
 		}
