@@ -1,5 +1,11 @@
 package edu.handong.csee.java.chatcounter;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 /**
@@ -12,18 +18,23 @@ public class RunnerOfChatCounter {
 	 * @param args
 	 * @throws FileNotFoundException
 	 */
+
 	public static void main(String[] args) throws FileNotFoundException {
-		System.out.println("Please input pathe name");
-		Scanner keyboard = new Scanner(System.in);
-		String inputName=keyboard.nextLine();
-		NameAdder na = new NameAdder();
 		FileWriter fw=new FileWriter();
 		
+		CliRunner myRunner = new CliRunner();
+		myRunner.run(args);
 		
 		FileLoader loader = new FileLoader();
-		loader.readDirectory(inputName);
 		
-		fw.sortResult();
+		try {
+			loader.readDirectory(args[1]);
+			fw.sortResult(args[3]);
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			System.out.println("you must typing input path and output path");
+		}
+		
 	}
 
 }
