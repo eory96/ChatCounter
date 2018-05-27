@@ -18,7 +18,6 @@ public class RunnerOfChatCounter {
 	 * @param args
 	 * @throws FileNotFoundException
 	 */
-
 	public static void main(String[] args) throws FileNotFoundException {
 		FileWriter fw=new FileWriter();
 		
