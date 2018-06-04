@@ -77,7 +77,9 @@ public class CliRunner {
 
 		options.addOption(Option.builder("o").longOpt("output")
 				.desc("Set a path of a directory that ouput data")
+				.hasArg()
 				.argName("output option")
+				.required()
 				.build());
 
 		options.addOption(Option.builder("h").longOpt("help")

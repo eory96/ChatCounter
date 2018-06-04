@@ -82,15 +82,17 @@ public class NameAdder {
 		MacParser mac = new MacParser();
 		WindowsParser windows = new WindowsParser();
 		String change="";
-		String deleteWhiteSpace="";
+		String changePhoto ="";
 		
 		for(String n:mac.messageM) {
-			if(!totalMss1.contains(n))
-			totalMss1.add(n);
+			changePhoto=n.replace("사진", "Photo");
+			if(!totalMss1.contains(changePhoto))
+			totalMss1.add(changePhoto);
 		}
 		
 		for(String w:windows.messageW) {
-			if(w.contains("\"\"")) {
+			changePhoto=w.replace("사진", "Photo");
+			if(changePhoto.contains("\"\"")) {
 				change=w.replace("\"\"", "\"");
 				if(!totalMss1.contains(change))
 					totalMss1.add(change);
