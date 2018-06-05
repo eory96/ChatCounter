@@ -48,7 +48,7 @@ public class WindowsParser implements MessageParser{
 			realTime = patternName.substring(firstD,lastD);
 			fullString="\""+realName+"\""+", "+"\""+realTime+"\""+", "+"\""+realMss+"\"";
 			if(!messageW.contains(fullString))
-			messageW.add(fullString);
+			messageW.add(fullString.replace(" \"", "\""));
 		}
 
 

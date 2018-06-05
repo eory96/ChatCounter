@@ -53,7 +53,7 @@ public class MacParser implements MessageParser{
 		
 		String fullMessage = "\""+realName+"\""+", "+"\""+cutTime(realDate)+"\""+", "+"\""+realMessage+"\"";
 		if(!messageM.contains(fullMessage))	
-			messageM.add(fullMessage);
+			messageM.add(fullMessage.replace(" \"", "\""));
 	}
 	/**
 	 * this method used by FileLoader class to check line useful

@@ -81,6 +81,13 @@ public class CliRunner {
 				.argName("output option")
 				.required()
 				.build());
+		
+		options.addOption(Option.builder("c").longOpt("count")
+				.desc("Set a how many threads use for reading data")
+				.hasArg()
+				.argName("thread option")
+				.required()
+				.build());
 
 		options.addOption(Option.builder("h").longOpt("help")
 				.desc("Help")

@@ -1,11 +1,6 @@
 package edu.handong.csee.java.chatcounter;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
+
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 /**
@@ -27,8 +22,8 @@ public class RunnerOfChatCounter {
 		FileLoader loader = new FileLoader();
 		
 		try {
-			loader.readDirectory(args[1]);
-			fw.sortResult(args[3]);
+			loader.readDirectory(myRunner.inputPath);
+			fw.sortResult(myRunner.outputPath);
 		}
 		catch (ArrayIndexOutOfBoundsException e){
 			System.out.println("you must typing input path and output path");

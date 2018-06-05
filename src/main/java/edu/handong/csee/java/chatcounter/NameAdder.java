@@ -60,7 +60,7 @@ public class NameAdder {
 				if(j.equals(name[i]))
 					count++;
 			}
-			//if(name[i].equals("남재창")) count=count-1;
+			if(name[i].equals("21500002")) count=count-1;
 			counter.put(name[i],count);
 		}
 		
@@ -111,7 +111,7 @@ public class NameAdder {
 	}
 	
 	private void naming(String line) {
-		Pattern nameP = Pattern.compile("(\")(.*)(\")(,\\s)(\")([0-2][0-9]:[0-5][0-9])(\",\\s)(\")(.*)(\")");
+		Pattern nameP = Pattern.compile("(\")(.*)(\")(,)(\")([0-2][0-9]:[0-5][0-9])(\",)(\")(.*)(\")");
 		Matcher nameM = nameP.matcher(line);
 		String justName="";
 		
@@ -127,7 +127,7 @@ public class NameAdder {
 	}
 	
 	private void totalName(String line) {
-		Pattern nameP = Pattern.compile("(\")(.*)(\")(,\\s)(\")([0-2][0-9]:[0-5][0-9])(\",\\s)(\")(.*)(\")");
+		Pattern nameP = Pattern.compile("(\")(.*)(\")(,)(\")([0-2][0-9]:[0-5][0-9])(\",)(\")(.*)(\")");
 		Matcher nameM = nameP.matcher(line);
 		String justName="";
 		
