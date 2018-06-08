@@ -22,7 +22,8 @@ public class RunnerOfChatCounter {
 		FileLoader loader = new FileLoader();
 		
 		try {
-			loader.readDirectory(myRunner.inputPath);
+			loader.getFileNames(myRunner.inputPath);
+			loader.readDirectory();
 			fw.sortResult(myRunner.outputPath);
 		}
 		catch (ArrayIndexOutOfBoundsException e){

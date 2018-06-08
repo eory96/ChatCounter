@@ -12,21 +12,17 @@ import java.util.Scanner;
  *
  */
 public class FileLoader {
-	
+	ArrayList<File> fileNames = new ArrayList<File>();
 	/**
 	 *  This method receive path name from main method that is RunnerOfChatCounter.
 	 * and then, use Scanner class, File class get a file to inputStream variable 
 	 * finally it will show result that is list of path name like  
 	 * @param name
 	 */
-	public void readDirectory(String path) {
-		getFileNames(path);
+	public void readDirectory() {
 		Scanner input=null;
-		ArrayList<File> fileNames = getFileNames(path);
-		NameAdder fl =new NameAdder();
 		MacParser mParser = new MacParser();
 		WindowsParser wParser = new WindowsParser();
-		String temp="";
 				
 		for(File fileNameA:fileNames) {
 			String name = fileNameA.toString();
@@ -51,10 +47,8 @@ public class FileLoader {
 		}
 	}
 
-	private ArrayList<File> getFileNames(String path){
-		ArrayList<File> fileNames = new ArrayList<File>();
+	public ArrayList<File> getFileNames(String path){
 		File myPath = new File(path);
-		//myPath.listFiles();
 		for(File fileName:myPath.listFiles()) {
 			fileNames.add(fileName);
 		}
