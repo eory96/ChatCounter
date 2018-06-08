@@ -72,5 +72,3 @@ public class WindowsParser implements MessageParser{
 		return realName;
 	}
 }
-
-
