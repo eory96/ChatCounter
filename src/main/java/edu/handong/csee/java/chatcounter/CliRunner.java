@@ -7,15 +7,19 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 /**
- * CLI class provides the option -i,-o,-h
+ * CLI class provides the option -i,-o,-h,-c
  * -i option is receive input data path name
  * -o option is result file path
  * -h option tells you how to use it
+ * -c option receive how many use threads 
  * @author gimdaegyo
  *
  */
 
 public class CliRunner {
+	/**
+	 * receive thread number
+	 */
 	String countThread;
 	/**
 	 * received input path from RunnerOfChatCounter class (args[1])

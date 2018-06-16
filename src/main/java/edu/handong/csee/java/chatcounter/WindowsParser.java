@@ -32,7 +32,6 @@ public class WindowsParser implements MessageParser{
 		String realTime="";
 		String fullString="";
 
-		//String noMss="joined this chatroom.";
 		if(nameM.find()) {
 			String patternName = nameM.group();
 			int first = nameM.start(5);

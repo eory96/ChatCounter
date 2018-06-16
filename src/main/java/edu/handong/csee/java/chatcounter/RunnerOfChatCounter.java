@@ -22,15 +22,16 @@ public class RunnerOfChatCounter {
 		RunnerOfChatCounter counter = new RunnerOfChatCounter();
 		counter.runner(args);
 	}
-	
+	/**
+	 * this method is make thread pool and call a file
+	 * @param args
+	 */
 	public void runner(String[] args) {
 		RunnerOfChatCounter counter = new RunnerOfChatCounter();
 		FileWriter fw=new FileWriter();
 		CliRunner myRunner = new CliRunner();
 		int threadCounting;
 		myRunner.run(args);
-	
-		//FileLoader loader = new FileLoader(fileNames);
 		
 		try {
 			counter.getFileNames(myRunner.inputPath);

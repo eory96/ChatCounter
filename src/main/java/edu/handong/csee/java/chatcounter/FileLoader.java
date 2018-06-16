@@ -50,7 +50,10 @@ public class FileLoader implements Runnable{
 		}
 	}
 	
-
+	/**
+	 * constructor for FileLoader class it will 
+	 * @param path
+	 */
 	public FileLoader(File path) {
 		this.fileNames.add(path);
 	}
