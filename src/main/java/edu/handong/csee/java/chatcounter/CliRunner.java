@@ -16,6 +16,7 @@ import org.apache.commons.cli.Options;
  */
 
 public class CliRunner {
+	String countThread;
 	/**
 	 * received input path from RunnerOfChatCounter class (args[1])
 	 */
@@ -52,7 +53,8 @@ public class CliRunner {
 		try {
 
 			CommandLine cmd = parser.parse(options, args);
-
+			
+			countThread = cmd.getOptionValue("c");
 			inputPath = cmd.getOptionValue("i");
 			outputPath = cmd.getOptionValue("o");
 			help = cmd.hasOption("h");

@@ -50,8 +50,6 @@ public class WindowsParser implements MessageParser{
 			if(!messageW.contains(fullString))
 			messageW.add(fullString.replace(" \"", "\""));
 		}
-
-
 	}
 	/**
 	 * this method used by FileLoader class to check line useful
