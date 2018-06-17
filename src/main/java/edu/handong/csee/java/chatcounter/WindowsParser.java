@@ -1,10 +1,5 @@
 package edu.handong.csee.java.chatcounter;
 import java.util.ArrayList;
-/**
- * This method will parse a string of .csv file and meke Arraylist that store message
- * @author gimdaegyo
- *
- */
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**

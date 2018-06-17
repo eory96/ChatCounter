@@ -12,7 +12,6 @@ import java.util.concurrent.Executors;
  * it will just send file name and receive result of class method
  */
 public class RunnerOfChatCounter {
-	static ArrayList<File> fileNames = new ArrayList<File>();
 	/**
 	 * this main method receive file name from user and send file name to each class method
 	 * @param args
@@ -39,7 +38,7 @@ public class RunnerOfChatCounter {
 			
 			ExecutorService executor = Executors.newFixedThreadPool(threadCounting);
 			
-			for(File path:fileNames) {
+			for(File path:counter.getFileNames(myRunner.inputPath)) {
 				Runnable worker = new FileLoader(path);
 				executor.execute(worker);
 				
@@ -59,6 +58,7 @@ public class RunnerOfChatCounter {
 	}
 	
 	private ArrayList<File> getFileNames(String path){
+		ArrayList<File> fileNames = new ArrayList<File>();
 		File myPath = new File(path);
 		for(File fileName:myPath.listFiles()) {
 			fileNames.add(fileName);
