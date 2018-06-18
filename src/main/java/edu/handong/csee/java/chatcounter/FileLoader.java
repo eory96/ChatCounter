@@ -12,6 +12,14 @@ import java.util.Scanner;
  *
  */
 public class FileLoader implements Runnable{
+	
+	/**
+	 * constructor for FileLoader class it will 
+	 * @param path
+	 */
+	public FileLoader(File path) {
+		this.fileNames.add(path);
+	}
 	ArrayList<File> fileNames = new ArrayList<File>();
 	ArrayList<String> message = new ArrayList<String>();
 	
@@ -50,13 +58,7 @@ public class FileLoader implements Runnable{
 		}
 	}
 	
-	/**
-	 * constructor for FileLoader class it will 
-	 * @param path
-	 */
-	public FileLoader(File path) {
-		this.fileNames.add(path);
-	}
+	
 
 	
 }
